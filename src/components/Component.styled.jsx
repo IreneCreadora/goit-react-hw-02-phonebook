@@ -72,7 +72,7 @@ export const ContactItemStyled = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  margin: 4px 0;
   padding: 5px 10px;
   border-radius: 5%;
   border: 1px solid gray;
