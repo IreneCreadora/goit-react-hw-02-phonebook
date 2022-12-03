@@ -93,17 +93,3 @@ export const DeleteBtn = styled.button`
   background: rgba(0, 0, 0, 0.5);
   text-shadow: 0 0 5px #000;
 `;
-
-// export const Label = styled.span`
-//   font-weight: 400;
-//   font-size: 12px;
-//   line-height: 1.18;
-//   text-align: center;
-//   color: var(--color-secondary-text);
-// `;
-
-// export const Percentage = styled.span`
-//   font-weight: 500;
-//   font-size: 16px;
-//   line-height: 1.18;
-// `;
