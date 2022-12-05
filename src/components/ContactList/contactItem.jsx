@@ -7,13 +7,7 @@ const ContactItem = ({ contact, onDelete }) => {
     <ContactItemStyled>
       <p>{name}</p>
       <p>{number}</p>
-      <DeleteBtn
-        type="button"
-        id={id}
-        onClick={e => {
-          onDelete(e.target.id);
-        }}
-      >
+      <DeleteBtn type="button" onClick={() => onDelete(id)}>
         Delete
       </DeleteBtn>
     </ContactItemStyled>

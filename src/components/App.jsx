@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 
 import ContactForm from './ContactForm/contactForm';
+import Notification from './Notification/notification';
 import ContactList from './ContactList/contactList';
 import Filter from './Filter/filter';
 
-import { Container, Phonebook, Contacts } from './Component.styled';
+import { Container, Phonebook, Contacts, Section } from './Component.styled';
 
 class App extends Component {
   state = {
@@ -36,25 +37,17 @@ class App extends Component {
   formSubmit = ({ name, number }) => {
     this.setState(prevState => {
       const { contacts } = prevState;
-      const isContact = contacts.find(
-        contact => contact.name.toLowerCase() === name.toLowerCase()
-      );
-
-      if (isContact) {
+      if (
+        contacts.find(
+          contact => contact.name.toLowerCase() === name.toLowerCase()
+        )
+      ) {
         alert(`${name} is already in contact`);
         return contacts;
-      } else {
-        return {
-          contacts: [
-            {
-              id: nanoid(),
-              name,
-              number,
-            },
-            ...contacts,
-          ],
-        };
       }
+      return {
+        contacts: [{ id: nanoid(), name, number }, ...contacts],
+      };
     });
   };
 
@@ -65,7 +58,7 @@ class App extends Component {
   };
 
   render() {
-    const { filter } = this.state;
+    const { filter, contacts } = this.state;
     const filteredContacts = this.filteredContacts(filter);
     return (
       <Container>
@@ -73,15 +66,21 @@ class App extends Component {
         <ContactForm onSubmit={this.formSubmit} />
 
         <Contacts>Contacts</Contacts>
-        <Filter
-          title="Find contact by name"
-          onChange={this.handleFilterChange}
-          value={filter}
-        />
-        <ContactList
-          filteredContacts={filteredContacts}
-          onDelete={this.contactDelete}
-        />
+        {contacts.length === 0 ? (
+          <Notification message="Your contact book is empty, add your first contact!" />
+        ) : (
+          <Section>
+            <Filter
+              title="Find contact by name"
+              onChange={this.handleFilterChange}
+              value={filter}
+            />
+            <ContactList
+              filteredContacts={filteredContacts}
+              onDelete={this.contactDelete}
+            />
+          </Section>
+        )}
       </Container>
     );
   }

@@ -58,6 +58,14 @@ export const Contacts = styled.h2`
   color: #979595;
 `;
 
+export const Section = styled.section`
+  margin: 20px auto;
+`;
+
+export const Message = styled.h3`
+  color: #003060;
+`;
+
 export const FilterStyled = styled.label`
   color: #979595;
 `;
